@@ -1,0 +1,92 @@
+@model Account_DrankViewmodel
+@using DAL;
+@{
+    ViewData["Title"] = "Index";
+    if (Model.Account.Rol == LOGIC.Rollen.Gebruiker)
+    {
+        Layout = "_Layout";
+    }
+    else if (Model.Account.Rol == LOGIC.Rollen.Admin)
+    {
+        Layout = "AdminLayout";
+    }
+}
+
+
+
+@{
+    if (ViewBag.Alert == 0)
+    {
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            Actie is voltooid.
+        </div>
+    }
+    else if (ViewBag.Alert == 1)
+    {
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            Drank is niet aangemaakt, niet alle velden waren ingevuld.
+        </div>
+    }
+    else if (ViewBag.Alert == 2)
+    {
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            Drank is niet aangemaakt de prijs was ingevuld als €0.
+        </div>
+    }
+    else if (ViewBag.Alert == 5)
+    {
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            Er is al een drank met deze naam.
+        </div>
+    }
+    else if (ViewBag.Alert == 6)
+    {
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            Drank is toegevoegd aan favorieten
+        </div>
+    }
+}
+
+<p>
+    @if (Model.Account.Rol == LOGIC.Rollen.Admin)
+    {
+        <a asp-action="Aanmaken">Nieuwe drank aanmaken</a>
+    }
+</p>
+
+<h1>Kies een drank</h1>
+<div>
+    @foreach (drankshop.Models.CategorieViewModel item in ViewBag.Categories)
+    {
+        <a type="button" style="background-color: #5020BB; color: white" class="btn btn" asp-controller="Drank" asp-action="Details" asp-route-id="@item.Id">@item.Naam</a>
+    }
+</div>
+<div class="row">
+    @foreach (var drank in ViewBag.DrankLijst)
+    {
+        <div class="col-md-4" style="margin-bottom:20px">
+            <div class="card">
+                <img class="card-img-top" src="~/img/@(drank.Naam).jpg" alt="Card image" />
+                <div class="card-body">
+                    <h4 class="card-title">@drank.Naam</h4>
+                    <p class="card-text">Prijs: @drank.Prijs</p>
+                    @if (Model.Account.Rol == LOGIC.Rollen.Gebruiker)
+                    {
+                        <a type="button" style="background-color: #5020BB; color: white" class="btn btn" asp-controller="Favoriet" asp-action="FavorietToevoegen" asp-route-id="@drank.Id">Toevoegen</a>
+                        <a type="button" style="background-color: #5020BB; color: white" class="btn btn" asp-controller="Review" asp-action="SchrijfReview" asp-route-id="@drank.Id">Schrijf review</a>
+                        <a type="button" style="background-color: #5020BB; color: white" class="btn btn" asp-controller="Review" asp-action="ReviewsperDrank" asp-route-id="@drank.Id">Bekijk reviews</a>
+                    }
+                    @if (Model.Account.Rol == LOGIC.Rollen.Admin)
+                    {
+                        <a class="stretched-link" asp-controller="Drank" asp-action="Bewerken" asp-route-id="@drank.Id"></a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

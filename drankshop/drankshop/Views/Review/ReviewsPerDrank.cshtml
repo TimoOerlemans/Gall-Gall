@@ -1,0 +1,40 @@
+﻿@model IEnumerable<drankshop.Models.ReviewViewModel>
+
+@{
+    ViewData["Title"] = "ReviewsPerDrank";
+}
+
+<h1>Reviews van</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Beschrijving)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cijfer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Naam)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Beschrijving)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cijfer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Naam)
+                </td>
+            </tr>
+        }
+        @*<a type="button" style="background-color: #5020BB; color: white" class="btn btn" asp-controller="Review" asp-action="SchrijfReview">Schrijf review</a>*@
+    </tbody>
+</table>

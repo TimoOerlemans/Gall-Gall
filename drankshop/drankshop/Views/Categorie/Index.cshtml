@@ -1,0 +1,67 @@
+﻿@model Account_CategorieViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    if (Model.Account.Rol == LOGIC.Rollen.Gebruiker)
+    {
+        Layout = "_Layout";
+    }
+    else if (Model.Account.Rol == LOGIC.Rollen.Admin)
+    {
+        Layout = "AdminLayout";
+    }
+}
+
+@{
+    if (ViewBag.Alert == 0)
+    {
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            Actie is voltooid.
+        </div>
+    }
+    else if (ViewBag.Alert == 1)
+    {
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            Categorie is niet aangemaakt. Check uw verbinding.
+        </div>
+    }
+    else if (ViewBag.Alert == 2)
+    {
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            Categorie is niet bewerkt. Geen naam meegegeven.
+        </div>
+    }
+    else if (ViewBag.Alert == 3)
+    {
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            Categorie is niet aangemaakt. Geen naam meegegeven.
+        </div>
+    }
+    else if (ViewBag.Alert == 5)
+    {
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            Naam is al in gebruik.
+        </div>
+    }
+}
+
+@if (Model.Account.Rol == LOGIC.Rollen.Admin)
+{
+    <p>
+        <a asp-action="Aanmaken">Nieuwe categorie aanmaken</a>
+    </p>
+}
+
+<div>
+    @foreach (var item in ViewBag.Categories)
+    {
+        <a type="button" style="background-color: #5020BB; color: white" class="btn btn" asp-controller="Drank" asp-action="Details" asp-route-id="@item.Id">@item.Naam</a>
+    }
+</div>
+
+

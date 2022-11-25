@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+@{
+    Layout = null;
+}
+<html>
+<head>
+    <title>Call&Call</title>
+    <link rel="stylesheet" href="~/css/Style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+</head>
+<body>
+    <section id="banner">
+        <a asp-controller="Home" asp-action="Index"><img class="logo" src="~/img/Logo.png" /></a>
+        <div class="banner-text">
+            <h1>Grote drank website</h1>
+            <p>
+                Zoek je drank en sla deze op in jou favorieten lijstje.
+                <br />Zo weet je altijd hoe duur jou favorieten dranken zijn
+                in onze winkel.
+            </p>
+            <div class="banner-btn">
+                <a href="#"><span></span>Meer lezen</a>
+            </div>
+        </div>
+    </section>
+    <div id="sidenav">
+        <nav>
+            <ul>
+                <li><a href="#banner">Home</a></li>
+                <li><a href="#feature">Aanraders voor mixen</a></li>
+                <li><a href="#service">Voorraad</a></li>
+                <li><a href="#footer">Contact</a></li>
+                <li><a asp-controller="Account" asp-action="Inloggen">Inloggen</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div id="menubtn">
+        <img src="~/img/588a6507d06f6719692a2d15.png" id="menu"/>
+    </div>
+
+    <!--features-->
+    <section id="feature">
+        <div class="title-text">
+            <p>Aanraders voor mixen</p>
+            <h1>Wat wij aanraden om te maken</h1>
+        </div>
+        <div class="feature-box">
+            <div class="features">
+                <h1>linkjes</h1>
+                <div class="features-desc">
+                    <div class="feature-text">
+                        <p>Wij hebben hier een aantal website<br />die lekkere recepten hebben om goede cocktails te maken.</p>
+                        <a HREF="http://www.google.com/">Google Search Engine</a>
+                    </div>
+                </div>
+            </div>
+            <div class="features-img">
+                <img src="~/img/640_cocktail-bar-cocktailshaker.jpg" />
+            </div>
+        </div>
+    </section>
+
+    <section id="service">
+        <div class="title-text">
+            <p>Voorraad</p>
+            <h1>Kies een categorie</h1>
+        </div>
+        <div class="service-box">
+            <div class="single-service">
+                <img src="~/img/640_cocktail-bar-cocktailshaker.jpg" />
+                <div class="overlay"></div>
+                <div class="service-desc">
+                    <h3>Bier</h3>
+                    <hr />
+                    <p>Bekijk hier alle bieren.</p>
+                </div>
+            </div>
+            <div class="single-service">
+                <img src="~/img/640_cocktail-bar-cocktailshaker.jpg" />
+                <div class="overlay"></div>
+                <div class="service-desc">
+                    <h3>Wiskey</h3>
+                    <hr />
+                    <p>Bekijk hier alle wiskey's.</p>
+                </div>
+            </div>
+            <div class="single-service">
+                <img src="~/img/640_cocktail-bar-cocktailshaker.jpg" />
+                <div class="overlay"></div>
+                <div class="service-desc">
+                    <h3>Gin</h3>
+                    <hr />
+                    <p>Bekijk hier alle gin's.</p>
+                </div>
+            </div>
+            <div class="single-service">
+                <img src="~/img/640_cocktail-bar-cocktailshaker.jpg" />
+                <div class="overlay"></div>
+                <div class="service-desc">
+                    <h3>Wijn</h3>
+                    <hr />
+                    <p>Bekijk hier alle wijnen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--footer-->
+    <section id="footer">
+        <div class="title-text-footer"> 
+            <p>Contact</p>
+        </div>
+        <div class="footer-row">
+            <div class="footer-left">
+                <h1>Openingstijden</h1>
+                <p><i class="fa fa-clock-o"></i>Maandag/vrijdag - 9:00 tot 19:00</p>
+                <p><i class="fa fa-clock-o"></i>zaterdag en zondag - 8:00 tot 18:00</p>
+            </div>
+            <div class="footer-right">
+                <h1>Contact gegevens</h1>
+                <p>De Hovel 19, 5051NP Goirle<i class="fa fa-map-marker"></i></p>
+                <a asp-controller="Home" asp-action="Index">www.call&call.nl<i class="fa fa-paper-plane"></i></a>
+                <p>013-5343892<i class="fa fa-phone"></i></p>
+            </div>
+        </div>
+        <div class="social-links">
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-instagram"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-youtube-play"></i>
+            <p>© 2021 - Call&Call</p>
+        </div>
+    </section>
+    <section id="footer-bottom">
+        <div class="footer-onderkant">
+            <a href="https://www.nix18.nl/">
+                <img src="~/img/nix18.svg" />
+            </a>
+            <p>< 18 jaar, deze website is niet voor jou bestemd</p>
+            <p>< 18 jaar verkopen wij geen alcohol</p>
+            <p>< 25 jaar, laat je legitimatie zien</p>
+        </div>
+    </section>
+
+
+
+    <script>
+        var menubtn = document.getElementById("menubtn")
+        var sidenav = document.getElementById("sidenav")
+        var menu = document.getElementById("menu")
+
+        menubtn.onclick = function () {
+            if (sidenav.style.right == "-250px") {
+                sidenav.style.right = "0";
+                menu.src = "/img/211652_close_icon.png"
+            }
+            else {
+                sidenav.style.right = "-250px";
+                menu.src = "/img/588a6507d06f6719692a2d15.png"
+            }
+        }
+
+        var scroll = new SmoothScroll('a[href*="#"]', {
+            speed: 1000,
+            speedAsDuration: true
+        });
+    </script>
+</body>
+</html>

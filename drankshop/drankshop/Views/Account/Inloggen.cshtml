@@ -1,0 +1,173 @@
+﻿@model LogInViewModel
+@{ ViewData["Title"] = "Inloggen";
+    Layout = null;
+}
+<head>
+    <title>Call&Call</title>
+    <link rel="stylesheet" href="~/css/Style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+</head>
+
+<body>
+    <div id="sidenav">
+        <nav>
+            <ul>
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-controller="Home" asp-action="Index">Aanraders voor mixen</a></li>
+                <li><a asp-controller="Home" asp-action="Index">Voorraad</a></li>
+                <li><a asp-controller="Home" asp-action="Index">Contact</a></li>
+                <li><a asp-controller="Account" asp-action="Inloggen">Inloggen</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div id="menubtn">
+        <img src="~/img/588a6507d06f6719692a2d15.png" id="menu" />
+    </div>
+
+    <section id="inloggen">
+        <div class="alert">
+            @{
+                if (ViewBag.Alert == 0)
+                {
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        Gebruiker is verwijdert
+                    </div>}
+                else if (ViewBag.Alert == 1)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        Wachtwoord of gebruikersnaam incorrect..
+                    </div>}
+                else if (ViewBag.Alert == 2)
+                {
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        Account is aangemaakt.
+                    </div>}
+                else if (ViewBag.Alert == 3)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        Forms kunnen niet leeg zijn.
+                    </div>}
+                else if (ViewBag.Alert == 4)
+                {
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        Gebruiker uitgelogd.
+                    </div>}
+            }
+        </div>
+        <div class="center">
+            <h1>Inloggen</h1>
+            <form method="post">
+                <div class="txt_field">
+                    <input asp-for="Gebruikersnaam" type="text" required />
+                    <span></span>
+                    <label>Gebruikersnaam</label>
+                </div>
+                <div class="txt_field">
+                    <input asp-for="Wachtwoord" type="password" required />
+                    <span></span>
+                    <label>Wachtwoord</label>
+                </div>
+                <div class="inlog-knop">
+                    <button type="submit"><span></span>Inloggen</button>
+                </div>
+                <div class="signup-link">
+                    Nog geen account<a asp-controller="Account" asp-action="Registreren">Registreer</a>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section id="footer">
+        <div class="title-text-footer">
+            <p>Contact</p>
+        </div>
+        <div class="footer-row">
+            <div class="footer-left">
+                <h1>Openingstijden</h1>
+                <p><i class="fa fa-clock-o"></i>Maandag/vrijdag - 9:00 tot 19:00</p>
+                <p><i class="fa fa-clock-o"></i>zaterdag en zondag - 8:00 tot 18:00</p>
+            </div>
+            <div class="footer-right">
+                <h1>Contact gegevens</h1>
+                <p>De Hovel 19, 5051NP Goirle<i class="fa fa-map-marker"></i></p>
+                <a asp-controller="Home" asp-action="Index">www.call&call.nl<i class="fa fa-paper-plane"></i></a>
+                <p>013-5343892<i class="fa fa-phone"></i></p>
+            </div>
+        </div>
+        <div class="social-links">
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-instagram"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-youtube-play"></i>
+            <p>© 2021 - Call&Call</p>
+        </div>
+    </section>
+    <section id="footer-bottom">
+        <div class="footer-onderkant">
+            <a href="https://www.nix18.nl/">
+                <img src="~/img/nix18.svg" />
+            </a>
+            <p>< 18 jaar, deze website is niet voor jou bestemd</p>
+            <p>< 18 jaar verkopen wij geen alcohol</p>
+            <p>< 25 jaar, laat je legitimatie zien</p>
+        </div>
+    </section>
+
+    <script>
+        var menubtn = document.getElementById("menubtn")
+        var sidenav = document.getElementById("sidenav")
+        var menu = document.getElementById("menu")
+
+        menubtn.onclick = function () {
+            if (sidenav.style.right == "-250px") {
+                sidenav.style.right = "0";
+                menu.src = "/img/211652_close_icon.png"
+            }
+            else {
+                sidenav.style.right = "-250px";
+                menu.src = "/img/588a6507d06f6719692a2d15.png"
+            }
+        }
+
+        var scroll = new SmoothScroll('a[href*="#"]', {
+            speed: 1000,
+            speedAsDuration: true
+        });
+    </script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+@*<form class="modal-content animate" asp-action="Inloggen">
+    <div class="container">
+        <div class="form-group">
+            <label for="Gebruikersnaam">Gebruikersnaam</label>
+            <input type="text" asp-for="Gebruikersnaam" placeholder="Voer gebruikersnaam in" />
+            <span asp-validation-for="Gebruikersnaam" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="Gebruikersnaam">Wachtwoord</label>
+            <input type="password" asp-for="Wachtwoord" placeholder="Voer wachtwoord in" />
+            <span asp-validation-for="Wachtwoord" class="text-danger"></span>
+        </div>
+        <button type="submit">Inloggen</button>
+    </div>
+    <div class="container" style="background-color:#f1f1f1">
+        <span class="psw"><a asp-controller="Account" asp-action="Registreren">Account aanmaken</a></span>
+    </div>
+</form>*@
+
+
+
+

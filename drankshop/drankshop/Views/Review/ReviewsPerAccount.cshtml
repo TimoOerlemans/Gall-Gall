@@ -1,0 +1,61 @@
+﻿@model IEnumerable<drankshop.Models.ReviewViewModel>
+
+@{
+    ViewData["Title"] = "ReviewsPerAccount";
+    Layout = "_Layout";
+}
+@{
+if (ViewBag.Alert == 0)
+{
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        Actie is voltooid.
+    </div>
+}
+else if (ViewBag.Alert == 1)
+{
+    <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        Categorie is niet aangemaakt. Check uw verbinding.
+    </div>
+    }
+}
+
+<h1>ReviewsPerAccount</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Beschrijving)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cijfer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Naam)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Beschrijving)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cijfer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Naam)
+                </td>
+                <td>
+                    <a type="button" style="background-color: #5020BB; color: white" class="btn btn" asp-controller="Review" asp-action="Verwijderen" asp-route-id="@item.Id">Verwijder review</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

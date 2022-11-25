@@ -1,0 +1,50 @@
+﻿@model Account_DrankViewmodel
+
+@{
+    ViewData["Title"] = "Index";
+    if (Model.Account.Rol == LOGIC.Rollen.Gebruiker)
+    {
+        Layout = "_Layout";
+    }
+    else if (Model.Account.Rol == LOGIC.Rollen.Admin)
+    {
+        Layout = "AdminLayout";
+    }
+}
+
+<h1>Dranken van @ViewBag.Categorieën.Naam</h1>
+
+@if (Model.Account.Rol == LOGIC.Rollen.Admin)
+{
+    <a type="button" style="background-color: #5020BB; color: white" class="btn btn" asp-controller="Categorie" asp-action="Bewerken" asp-route-id="@ViewBag.Categorieën.Id">Categorie bewerken</a>
+    <a type="button" style="background-color: #5020BB; color: white" class="btn btn" asp-controller="Categorie" asp-action="Verwijderen" asp-route-id="@ViewBag.Categorieën.Id">Categorie verwijderen</a>
+}
+
+
+<div class="row">
+    @foreach (LOGIC.Drank item in ViewBag.Dranken)
+    {
+        <div class="col-md-4" style="margin-bottom:20px">
+            <div class="card">
+                <img class="card-img-top" src="~/img/@(item.Naam).jpg" alt="Card image" />
+                <div class="card-body">
+                    <h4 class="card-title">@item.Naam</h4>
+                    <p class="card-text">Prijs: @item.Prijs</p>
+                    @if (Model.Account.Rol == LOGIC.Rollen.Gebruiker)
+                    {
+                        <a type="button" style="background-color: #5020BB; color: white" class="btn btn" asp-controller="Favoriet" asp-action="FavorietToevoegen" asp-route-id="@item.Id">Toevoegen</a>
+                        <a type="button" style="background-color: #5020BB; color: white" class="btn btn" asp-controller="Review" asp-action="SchrijfReview" asp-route-id="@item.Id">Schrijf review</a>
+                        <a type="button" style="background-color: #5020BB; color: white" class="btn btn" asp-controller="Review" asp-action="ReviewsperDrank" asp-route-id="@item.Id">Bekijk reviews</a>
+                    }
+                    @if (Model.Account.Rol == LOGIC.Rollen.Admin)
+                    {
+                        <a class="stretched-link" asp-controller="Drank" asp-action="Bewerken" asp-route-id="@item.Id"></a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+<a class="btn btn-axi" asp-action="Index">Klik hier om terug te gaan</a>

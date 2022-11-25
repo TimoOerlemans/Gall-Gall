@@ -1,0 +1,44 @@
+﻿@model drankshop.Models.ReviewViewModel
+@{
+    ViewData["Title"] = "SchrijfReview";
+    Layout = "_Layout";
+}
+@{
+if (ViewBag.Alert == 3)
+{
+    <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        Niet alles ingevuld.
+    </div>
+}
+}
+
+<h1>Schrijf review</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SchrijfReview">
+            <select asp-for="Cijfer" class="dropdown-toggle">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <div class="form-group">
+                <label asp-for="Beschrijving" class="control-label"></label>
+                <input asp-for="Beschrijving" class="form-control" />
+                <span asp-validation-for="Beschrijving" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Plaats review" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Drank" asp-action="Index">Terug naar dranken</a>
+</div>
+
